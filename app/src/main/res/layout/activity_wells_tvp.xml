@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:context=".calculators.WellsTvpActivity">
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Voltar"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Escore de Wells para TVP"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#262626" />
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <!-- Descrição -->
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Preencha os critérios clínicos presentes para estimar o risco para Trombose Venosa Profunda (TVP) a partir dos critérios de Wells."
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
+
+        <!-- Critérios (CheckBoxes) -->
+        <LinearLayout
+            android:id="@+id/checkboxContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription">
+
+            <CheckBox android:id="@+id/cbCancer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Câncer ativo (Ou tratamento com seis meses)" />
+            <CheckBox android:id="@+id/cbParalisia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Paralisia ou imobilização recente do membro" />
+            <CheckBox android:id="@+id/cbCirurgia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cirurgia recente ou repouso > 3 dias" />
+            <CheckBox android:id="@+id/cbDor" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dor localizada ao longo do sistema venoso" />
+            <CheckBox android:id="@+id/cbEdemaTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Edema de todo o membro inferior" />
+            <CheckBox android:id="@+id/cbCircunferencia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aumento de panturrilha (> 3cm)" />
+            <CheckBox android:id="@+id/cbEdemaAssimetrico" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Edema assimétrico" />
+            <CheckBox android:id="@+id/cbVeias" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Veias colaterais não-varicosas presentes" />
+            <CheckBox android:id="@+id/cbTvpPrevia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TVP prévia documentada" />
+            <CheckBox android:id="@+id/cbDiagnosticoAlternativo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Diagnóstico alternativo tão provável quanto TVP" />
+        </LinearLayout>
+
+        <!-- Botão Calcular -->
+        <Button
+            android:id="@+id/btnCalculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calcular Score"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/checkboxContainer" />
+
+        <!-- Resultado -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/btnCalculate"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resultado"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvResultadoTvp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:text="Pontuação: 0"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Espaço extra no final para garantir visibilidade completa -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/cvResult"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

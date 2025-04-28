@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.RxMetrics" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">#262626</item>
+        <item name="colorPrimaryDark">#262626</item>
+        <item name="colorAccent">#262626</item>
+        <item name="colorControlNormal">#262626</item>
+        <item name="android:textColorHint">#757575</item>
+        <item name="android:textColorPrimary">#262626</item>
+        <item name="android:textColorSecondary">#757575</item>
+        <!-- ... outros atributos ... -->
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColorHint">#757575</item>
+        <item name="android:textColor">#262626</item>
+        <item name="hintTextColor">#757575</item>
+        <item name="android:editTextColor">#262626</item>
+    </style>
+</resources>
