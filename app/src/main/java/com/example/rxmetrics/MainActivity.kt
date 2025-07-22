@@ -151,7 +151,10 @@ class MainActivity : AppCompatActivity() {
                 CalculatorType.LDL),
             Calculator(12, "Escore de Wells para TEP",
                 "Encontre o risco de Tromboembolismo Pulmonar pelos critérios de Wells",
-                CalculatorType.WELLS_TEP)
+                CalculatorType.WELLS_TEP),
+            Calculator(13, "Déficit de Potássio",
+                "Encontre a quantidade faltante de potássio sérico",
+                CalculatorType.DEFICIT_K)
         )
 
         calculatorsList.addAll(data)
@@ -216,6 +219,7 @@ class MainActivity : AppCompatActivity() {
             CalculatorType.FLUIDO_INTRA_OP -> FluidoIntraOpActivity::class.java
             CalculatorType.LDL -> LDLActivity::class.java
             CalculatorType.WELLS_TEP -> WellsTepActivity::class.java
+            CalculatorType.DEFICIT_K -> DeficitKActivity::class.java
             else -> null
         }
 
