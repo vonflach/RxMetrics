@@ -6,7 +6,7 @@ Rx Metrics é um aplicativo Android de calculadoras médicas desenvolvido para a
 
 ## Funcionalidades
 
-O aplicativo inclui as seguintes calculadoras médicas:
+O aplicativo inclui as seguintes calculadoras médicas  (ordem de inclusão):
 
 - **Calculadora de IMC**: Calcula o Índice de Massa Corporal
 - **Calculadora de Dose**: Calcula dosagens de medicamentos em vazão contínua
@@ -20,6 +20,7 @@ O aplicativo inclui as seguintes calculadoras médicas:
 - **Calculadora de Fluido Intraoperatório**: Calcula a quantidade de fluidos durante o ato cirúrgico
 - **Calculadora de LDL**: Calcula o LDL colesterol
 - **Calculadora de Wells para TEP**: Avalia o risco de Tromboembolismo Pulmonar pelos critérios de Wells
+- **Calculadora de Déficit de Potássio**: Avalia a quantidade faltante do íon e sugere a reposição necessária (Somente IV)
 
 ##  Tecnologias Utilizadas
 
