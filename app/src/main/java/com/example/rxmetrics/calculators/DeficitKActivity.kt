@@ -28,6 +28,8 @@ class DeficitKActivity : AppCompatActivity() {
     private lateinit var deficitValueTextView: TextView
     private lateinit var volAspirarTextView: TextView
     private lateinit var velocidadeTextView: TextView
+    private lateinit var tempoInfusaoTextView: TextView
+    private lateinit var scrollView: androidx.core.widget.NestedScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,8 @@ class DeficitKActivity : AppCompatActivity() {
         deficitValueTextView = findViewById(R.id.tvDeficitValue)
         volAspirarTextView = findViewById(R.id.tvVolAspirarValue)
         velocidadeTextView = findViewById(R.id.tvVelocidadeValue)
+        tempoInfusaoTextView = findViewById(R.id.tvTempoInfusaoValue)
+        scrollView = findViewById(R.id.scrollView)
 
         calculateButton.setOnClickListener {
             calculateDeficit()
@@ -131,6 +135,21 @@ class DeficitKActivity : AppCompatActivity() {
 
             // Calcular déficit
             val deficit = (kalvo - katual) * peso * 0.4
+
+            // Validar concentração máxima por via de acesso
+            val isPeriferico = selectedIdAcesso == R.id.rbPeriferico
+            val isCentral = selectedIdAcesso == R.id.rbCentral
+
+            if (isPeriferico && deficit >= 40) {
+                Toast.makeText(this, "Concentração máxima superior ao limite da via periférica. Considere acesso central.", Toast.LENGTH_LONG).show()
+                return
+            }
+
+            if (isCentral && deficit >= 60) {
+                Toast.makeText(this, "Concentração superior ao máximo da via central. Considere fracionar a dose.", Toast.LENGTH_LONG).show()
+                return
+            }
+
             val formattedDeficit = String.format("%.2f", deficit)
             deficitValueTextView.text = "Déficit de K+: $formattedDeficit mEq"
 
@@ -161,7 +180,7 @@ class DeficitKActivity : AppCompatActivity() {
             val formatted_vol_aspirar = vol_aspirar_arredondado.toString()
             val formatted_vol_soro = vol_soro.toString()
 
-            volAspirarTextView.text = "Aspirar $formatted_vol_aspirar mL e diluir em $formatted_vol_soro mL de SF 0,9%"
+            volAspirarTextView.text = "Diluição: Aspirar $formatted_vol_aspirar mL e diluir em $formatted_vol_soro mL de SF 0,9%"
 
             // Calcular velocidade de infusão
             // velInfu está em mEq/hr, precisamos converter para mL/hr
@@ -170,9 +189,19 @@ class DeficitKActivity : AppCompatActivity() {
             val vel_infu_ml_hr = velInfu / concentracao_solucao // mL/hr
 
             val formatted_velocidade = String.format("%.1f", vel_infu_ml_hr)
-            velocidadeTextView.text = "Infundir a $formatted_velocidade mL/h"
+            velocidadeTextView.text = "Taxa de infusão: $formatted_velocidade mL/h"
+
+            // Calcular tempo total de infusão
+            val tempo_total_horas = 500.0 / vel_infu_ml_hr
+            val formatted_tempo = String.format("%.1f", tempo_total_horas)
+            tempoInfusaoTextView.text = "Tempo total de infusão: $formatted_tempo horas"
 
             resultCardView.visibility = View.VISIBLE
+
+            // Scroll automático para mostrar o resultado
+            resultCardView.post {
+                scrollView.smoothScrollTo(0, resultCardView.bottom)
+            }
 
         } catch (e: NumberFormatException) {
             Toast.makeText(this, "Erro: Verifique se todos os valores são números válidos", Toast.LENGTH_SHORT).show()
