@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Encontre a quantidade faltante de potássio sérico."
+        android:text="Encontre a quantidade faltante de potássio sérico e como repor o íon."
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
@@ -106,13 +106,98 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilVelK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Velocidade de infusão (10 - 20 mEq/hr)"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toBottomOf="@+id/tilKDesejado">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etVelK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvApresentaçãoK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Apresentação:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilVelK" />
+
+    <RadioGroup
+        android:id="@+id/rgApresentação"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tvApresentaçãoK">
+
+        <RadioButton
+            android:id="@+id/rb10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="10%" />
+
+        <RadioButton
+            android:id="@+id/rb191"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="19,1%" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvAcesso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Via de Acesso:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgApresentação" />
+
+    <RadioGroup
+        android:id="@+id/rgAcesso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcesso">
+
+        <RadioButton
+            android:id="@+id/rbPeriferico"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Periférico" />
+
+        <RadioButton
+            android:id="@+id/rbCentral"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Central" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btnCalculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Calcular Déficit de Potássio"
-        app:layout_constraintTop_toBottomOf="@+id/tilKDesejado" />
+        app:layout_constraintTop_toBottomOf="@+id/rgAcesso" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvResult"
@@ -139,6 +224,26 @@
 
             <TextView
                 android:id="@+id/tvDeficitValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="25.0"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvVolAspirarValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="25.0"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvVelocidadeValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
