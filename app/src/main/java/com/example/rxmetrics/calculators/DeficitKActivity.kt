@@ -151,7 +151,7 @@ class DeficitKActivity : AppCompatActivity() {
             val isPeriferico = selectedIdAcesso == R.id.rbPeriferico
             val isCentral = selectedIdAcesso == R.id.rbCentral
 
-            val concentracao_solucao_Litro = deficit / (volume*1000) // mEq/L
+            val concentracao_solucao_Litro = deficit / (volume/1000) // mEq/L
 
             if (isPeriferico && concentracao_solucao_Litro >= 40) {
                 Toast.makeText(this, "Concentração máxima superior ao limite da via periférica. Considere acesso central.", Toast.LENGTH_LONG).show()
