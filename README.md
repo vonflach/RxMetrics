@@ -70,6 +70,19 @@ Abra o projeto no Android Studio e execute-o em um emulador ou dispositivo físi
 - Modo escuro
 - Novas calculadoras específicas para diferentes especialidades médicas
 
+## ⚠️ Aviso Legal
+
+Este aplicativo foi desenvolvido como uma ferramenta de apoio pessoal à prática clínica do desenvolvedor.
+
+> ⚠️ **Este aplicativo não substitui a avaliação médica, o julgamento profissional ou diretrizes clínicas formais. Não siga cegamente as informações aqui disponibilizadas.**
+
+Apesar de toda dedicação e esforço para garantir a precisão dos cálculos e dados, o desenvolvedor **não assume responsabilidade por quaisquer decisões clínicas** tomadas com base nos resultados fornecidos pelo aplicativo.
+
+**Use por sua conta e risco.** Sempre verifique valores críticos e valide as informações com fontes confiáveis e protocolos da sua instituição.
+
+**Bom exercício clínico!**
+
+
 ## 📄 Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
