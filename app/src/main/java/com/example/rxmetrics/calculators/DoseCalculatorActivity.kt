@@ -25,6 +25,7 @@ class DoseCalculatorActivity : AppCompatActivity() {
     private lateinit var doseValueTextView: TextView
     private lateinit var unidadeRadioGroup: RadioGroup
     private lateinit var considerarPesoRadioGroup: RadioGroup
+    private lateinit var tempoRadioGroup: RadioGroup
     private lateinit var tilWeight: TextInputLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,7 @@ class DoseCalculatorActivity : AppCompatActivity() {
 
         val backButton: ImageButton = findViewById(R.id.btnBack)
         backButton.setOnClickListener {
-            onBackPressed()  // Isso vai chamar a ação de voltar à tela anterior
+            onBackPressed()
         }
 
         // Habilitar o botão voltar na ActionBar
@@ -50,6 +51,7 @@ class DoseCalculatorActivity : AppCompatActivity() {
         doseValueTextView = findViewById(R.id.tvDoseValue)
         unidadeRadioGroup = findViewById(R.id.rgUnidade)
         considerarPesoRadioGroup = findViewById(R.id.rgConsiderarPeso)
+        tempoRadioGroup = findViewById(R.id.rgTempo)
         tilWeight = findViewById(R.id.tilWeight)
 
         // Configurar listener para a escolha de considerar peso ou não
@@ -58,7 +60,6 @@ class DoseCalculatorActivity : AppCompatActivity() {
                 R.id.rbPesoSim -> {
                     tilWeight.visibility = View.VISIBLE
                 }
-
                 R.id.rbPesoNao -> {
                     tilWeight.visibility = View.GONE
                 }
@@ -125,6 +126,8 @@ class DoseCalculatorActivity : AppCompatActivity() {
                 valorInvalido = true
             }
 
+            if (valorInvalido) return
+
             // Cálculo considerando o peso
             var dose: Float
             if (considerarPeso) {
@@ -133,36 +136,58 @@ class DoseCalculatorActivity : AppCompatActivity() {
                     pesoEditText.error = "O peso deve ser maior que zero"
                     return
                 }
-                // Fórmula: dose = c*1000*v/60*p
-                // Onde c = concentração (med/sol)
+                // Fórmula: dose = (vazao * med) / (60 * peso * sol)
                 dose = (vazao * med) / (60 * peso * sol)
             } else {
                 // Cálculo sem considerar peso
                 dose = (vazao * med) / (60 * sol)
             }
 
-            // Verificar a unidade escolhida
+            // Verificar a unidade de medicamento escolhida
             val usarMG = findViewById<RadioButton>(R.id.rbMG).isChecked
+            val usarMcg = findViewById<RadioButton>(R.id.rbMCG).isChecked
+            val usarUI = findViewById<RadioButton>(R.id.rbUI).isChecked
 
-            // Ajustar conforme a unidade escolhida
-            if (usarMG && !considerarPeso) {
-                // Já está em mg/min, não precisa converter
-            } else if (usarMG && considerarPeso) {
-                // Já está em mg/kg/min, não precisa converter
-            } else if (!usarMG && !considerarPeso) {
-                // Converter mg/min para mcg/min
-                dose *= 1000
-            } else if (!usarMG && considerarPeso) {
-                // Converter mg/kg/min para mcg/kg/min
-                dose *= 1000
+            // Verificar a unidade de tempo escolhida
+            val usarMin = findViewById<RadioButton>(R.id.rbMin).isChecked
+            val usarHr = findViewById<RadioButton>(R.id.rbHr).isChecked
+
+            // Ajustar dose conforme a unidade de medicamento
+            when {
+                usarMcg -> {
+                    // Converter de mg para mcg (multiplicar por 1000)
+                    dose *= 1000
+                }
+                usarUI -> {
+                    // Para UI, manter o valor como está (assumindo que a medicação já está em UI)
+                    // Se necessário, pode aplicar conversões específicas aqui
+                }
+                // Para mg, manter como está
             }
 
-            // Determinar a unidade para exibição
-            val unidadeTexto = if (usarMG) "mg" else "mcg"
-            val sufixoUnidade = if (considerarPeso) "/kg/min" else "/min"
+            // Ajustar dose conforme a unidade de tempo
+            if (usarHr) {
+                // Converter de /min para /hr (multiplicar por 60)
+                dose *= 60
+            }
+
+            // Determinar o texto da unidade para exibição
+            val unidadeTexto = when {
+                usarMG -> "mg"
+                usarMcg -> "mcg"
+                usarUI -> "UI"
+                else -> "mg" // default
+            }
+
+            val tempoTexto = if (usarHr) "hr" else "min"
+            val sufixoUnidade = if (considerarPeso) "/kg/$tempoTexto" else "/$tempoTexto"
 
             // Formatar o resultado
-            val formattedDose = String.format("%.2f", dose)
+            val formattedDose = when {
+                usarUI -> String.format("%.2f", dose) // UI geralmente não usa decimais
+                dose < 1 -> String.format("%.2f", dose) // Mais precisão para valores pequenos
+                else -> String.format("%.2f", dose)
+            }
 
             // Mostrar o resultado
             doseValueTextView.text = "Dose: $formattedDose $unidadeTexto$sufixoUnidade"

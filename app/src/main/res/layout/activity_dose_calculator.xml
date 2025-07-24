@@ -55,7 +55,7 @@
 
     <TextView
         android:id="@+id/tvUnidadeLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Unidade da dose:"
         android:layout_marginTop="16dp"
@@ -75,23 +75,30 @@
 
         <RadioButton
             android:id="@+id/rbMG"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="mg"
+            android:layout_marginEnd="16dp"
             android:checked="true"
-            android:layout_marginEnd="16dp" />
+            android:text="mg" />
 
         <RadioButton
             android:id="@+id/rbMCG"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="mcg" />
+
+        <RadioButton
+            android:id="@+id/rbUI"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="UI"
+            android:layout_marginStart="16dp"/>
     </RadioGroup>
 
     <!-- Opção para considerar peso com RadioButtons -->
     <TextView
         android:id="@+id/tvConsiderarPesoLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Considerar peso:"
         android:layout_marginTop="16dp"
@@ -111,7 +118,7 @@
 
         <RadioButton
             android:id="@+id/rbPesoSim"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="Sim"
             android:checked="true"
@@ -119,9 +126,44 @@
 
         <RadioButton
             android:id="@+id/rbPesoNao"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="Não" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvTempoLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Tempo de escolha:"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvConsiderarPesoLabel" />
+
+    <RadioGroup
+        android:id="@+id/rgTempo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tvTempoLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTempoLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTempoLabel">
+
+        <RadioButton
+            android:id="@+id/rbMin"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Min"
+            android:checked="true"
+            android:layout_marginEnd="16dp" />
+
+        <RadioButton
+            android:id="@+id/rbHr"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Hora" />
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -131,7 +173,7 @@
         android:layout_marginTop="16dp"
         android:hint="Peso (kg)"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintTop_toBottomOf="@+id/tvConsiderarPesoLabel">
+        app:layout_constraintTop_toBottomOf="@+id/tvTempoLabel">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etWeight"
@@ -146,7 +188,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Vazão (mL/h)"
+        android:hint="Vazão (mL/hr)"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintTop_toBottomOf="@+id/tilWeight">
 
