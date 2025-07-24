@@ -205,7 +205,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Quantidade de Medicamento (mg)"
+        android:hint="Quantidade de Medicamento (mg ou UI)"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintTop_toBottomOf="@+id/tilVazão">
 
