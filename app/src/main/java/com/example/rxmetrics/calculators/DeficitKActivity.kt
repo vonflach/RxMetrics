@@ -158,7 +158,7 @@ class DeficitKActivity : AppCompatActivity() {
                 return
             }
 
-            if (isCentral && concentracao_solucao_Litro >= 60) {
+            if (isCentral && concentracao_solucao_Litro >= 80) {
                 Toast.makeText(this, "Concentração superior ao máximo da via central. Considere fracionar a dose.", Toast.LENGTH_LONG).show()
                 return
             }
