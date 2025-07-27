@@ -1,9 +1,13 @@
 package com.example.rxmetrics
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private lateinit var suggestionsRecyclerView: RecyclerView
     private lateinit var searchCard: MaterialCardView
+    private lateinit var ivInfo: ImageView
 
     // Adapters
     private lateinit var calculatorAdapter: CalculatorAdapter
@@ -39,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         prepareCalculatorData()
         setupAdapters()
         setupSearch()
+        setupInfoIcon()
     }
 
     private fun initViews() {
@@ -46,6 +52,17 @@ class MainActivity : AppCompatActivity() {
         searchView = findViewById(R.id.searchView)
         suggestionsRecyclerView = findViewById(R.id.rvSuggestions)
         searchCard = findViewById(R.id.cvSearchBar)
+        ivInfo = findViewById(R.id.ivInfo)
+
+        val searchEditText = searchView.findViewById<android.widget.EditText>(
+            androidx.appcompat.R.id.search_src_text
+        )
+
+        // Força o hint (opcional se já está no XML)
+        searchEditText.hint = "Buscar..."
+
+        // Define a cor do hint (pode ser qualquer cor visível no seu tema)
+        searchEditText.setHintTextColor(getColor(R.color.textSecondary))
     }
 
     private fun setupRecyclerViews() {
@@ -227,6 +244,48 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, activityClass))
         } else {
             Toast.makeText(this, "Funcionalidade em desenvolvimento: ${calculator.name}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setupInfoIcon() {
+        ivInfo.setOnClickListener { showInfoDialog() }
+    }
+
+    private fun showInfoDialog() {
+        val builder = AlertDialog.Builder(this, R.style.CustomDialogTheme)
+
+        // Criar layout personalizado para o dialog
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_info, null)
+
+        // Configurar o dialog
+        builder.setView(dialogView)
+
+        val dialog = builder.create()
+
+        // Configurar botão de fechar no dialog
+        val btnClose = dialogView.findViewById<Button>(R.id.btnClose)
+        btnClose.setOnClickListener { dialog.dismiss() }
+
+        // Configurar para dialog ser cancelável tocando fora
+        dialog.setCanceledOnTouchOutside(true)
+
+        // Mostrar dialog
+        dialog.show()
+
+        // Ajustar tamanho do dialog para ser responsivo
+        dialog.window?.let { window ->
+            window.setBackgroundDrawableResource(android.R.color.transparent)
+            window.attributes.windowAnimations = R.style.DialogAnimation
+
+            // Configurar largura responsiva
+            val displayMetrics = resources.displayMetrics
+            val width = (displayMetrics.widthPixels * 0.9).toInt() // 90% da largura da tela
+            val maxWidth = (400 * displayMetrics.density).toInt() // máximo 400dp
+
+            window.setLayout(
+                minOf(width, maxWidth),
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+            )
         }
     }
 }
