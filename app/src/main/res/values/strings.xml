@@ -2,7 +2,7 @@
     <string name="app_name">Rx Metrics</string>
 
     <string name="dev_info_html">
-    Desenvolvido por Gabriel Sarmento - @vonflach © 2025<br/>
+    Desenvolvido por Gabriel Sarmento (@vonflach) © 2025<br/>
     <a href="https://github.com/vonflach">GitHub: github.com/vonflach</a>
 </string>
 </resources>

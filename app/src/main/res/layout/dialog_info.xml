@@ -80,7 +80,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="O presente aplicativo foi desenvolvido para contribuir, majoritariamente, porém não exclusivamente, com a prática clínica de seu desenvolvedor. Apesar disto, profissionais da área podem utilizar a ferramenta."
+                    android:text="O presente aplicativo foi desenvolvido para contribuir, majoritariamente, porém não exclusivamente, com a prática clínica de seu desenvolvedor.\nApesar disto, profissionais da área são encorajados a utilizar a ferramenta."
                     android:textSize="15sp"
                     android:textColor="#666666"
                     android:lineSpacingExtra="4dp"
