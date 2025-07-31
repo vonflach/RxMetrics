@@ -32,6 +32,4 @@ enum class CalculatorType {
     FENA,
     DEFICIT_K,
     CORRECAO_NA
-// Área de Superfície Corporal
-    // Adicione mais tipos conforme necessário
 }

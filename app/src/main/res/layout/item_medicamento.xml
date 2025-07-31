@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Header do Medicamento (sempre visível) -->
+        <LinearLayout
+            android:id="@+id/layoutMedicamentoHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Nome do Medicamento -->
+                <TextView
+                    android:id="@+id/tvMedicamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Azitromicina"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryColor"
+                    android:layout_marginBottom="2dp" />
+
+                <!-- Dose rápida (preview) -->
+                <TextView
+                    android:id="@+id/tvDosePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="500mg - VO"
+                    android:textSize="12sp"
+                    android:textColor="@color/textSecondary" />
+
+            </LinearLayout>
+
+            <!-- Ícone de expansão -->
+            <ImageView
+                android:id="@+id/ivExpandir"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_expandir"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Expandir detalhes" />
+
+            <!-- Botão Delete -->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_close"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Deletar medicamento"
+                android:padding="4dp" />
+
+        </LinearLayout>
+
+        <!-- Detalhes expandidos (inicialmente oculto) -->
+        <LinearLayout
+            android:id="@+id/layoutDetalhes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:visibility="gone">
+
+            <!-- Dose completa -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dose: "
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryColor" />
+
+                <TextView
+                    android:id="@+id/tvDose"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="500mg"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary" />
+
+            </LinearLayout>
+
+            <!-- Posologia -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posologia: "
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryColor" />
+
+                <TextView
+                    android:id="@+id/tvPosologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1x ao dia por 5 dias"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary" />
+
+            </LinearLayout>
+
+            <!-- Via -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Via: "
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryColor" />
+
+                <TextView
+                    android:id="@+id/tvVia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Oral"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary" />
+
+            </LinearLayout>
+
+            <!-- Observações -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Obs: "
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryColor" />
+
+                <TextView
+                    android:id="@+id/tvObservacoes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tomar em jejum"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
