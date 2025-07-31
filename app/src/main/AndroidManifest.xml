@@ -97,6 +97,11 @@
             android:name=".calculators.DeficitKActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".calculators.CorreçãoNaActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

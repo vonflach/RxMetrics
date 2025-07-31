@@ -21,6 +21,7 @@ O aplicativo inclui as seguintes calculadoras médicas  (ordem de inclusão):
 - **Calculadora de LDL**: Calcula o LDL colesterol
 - **Calculadora de Wells para TEP**: Avalia o risco de Tromboembolismo Pulmonar pelos critérios de Wells
 - **Calculadora de Déficit de Potássio**: Avalia a quantidade faltante do íon e sugere a reposição necessária (Somente IV)
+- **Calculadora de Correção de Sódio para Hiper e hiponatremia**: Calcula a velocidade de infusão e sugere a diluição a partir da variação sérica de sódio
 
 ##  Tecnologias Utilizadas
 

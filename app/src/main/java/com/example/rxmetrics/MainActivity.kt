@@ -171,7 +171,10 @@ class MainActivity : AppCompatActivity() {
                 CalculatorType.WELLS_TEP),
             Calculator(13, "Déficit de Potássio",
                 "Encontre a quantidade faltante de potássio sérico",
-                CalculatorType.DEFICIT_K)
+                CalculatorType.DEFICIT_K),
+            Calculator(14, "Correção de Sódio para Hiper e Hiponatremia",
+                "Calcule a taxa de infusão para a correção do sódio sérico",
+                CalculatorType.CORRECAO_NA)
         )
 
         calculatorsList.addAll(data)
@@ -237,6 +240,7 @@ class MainActivity : AppCompatActivity() {
             CalculatorType.LDL -> LDLActivity::class.java
             CalculatorType.WELLS_TEP -> WellsTepActivity::class.java
             CalculatorType.DEFICIT_K -> DeficitKActivity::class.java
+            CalculatorType.CORRECAO_NA -> CorreçãoNaActivity::class.java
             else -> null
         }
 

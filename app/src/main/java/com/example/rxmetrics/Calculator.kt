@@ -30,7 +30,8 @@ enum class CalculatorType {
     LDL,
     FLUIDO_INTRA_OP,
     FENA,
-    DEFICIT_K
+    DEFICIT_K,
+    CORRECAO_NA
 // Área de Superfície Corporal
     // Adicione mais tipos conforme necessário
 }
