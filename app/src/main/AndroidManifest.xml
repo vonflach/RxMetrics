@@ -26,6 +26,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Prescrições Rápidas -->
+        <activity
+            android:name=".PrescricoesActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
         <!-- Activities de calculadoras médicas -->
         <activity-alias
             android:name="CalculatorActivityBase"

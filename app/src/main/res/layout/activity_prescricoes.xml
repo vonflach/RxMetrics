@@ -3,167 +3,205 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <!-- Título da Página -->
-    <TextView
-        android:id="@+id/tvTitle"
+    <!-- Header compacto com busca -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Prescrições Rápidas"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/primaryColor"
-        android:gravity="center"
-        android:layout_marginBottom="16dp" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/primaryColor"
+        android:elevation="4dp">
 
-    <!-- Barra de Busca -->
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:queryHint="Buscar tópico ou medicamento..."
-        android:iconifiedByDefault="false" />
-
-    <!-- Card para Adicionar Nova Prescrição -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
-
-        <LinearLayout
+        <!-- Título da Página -->
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:text="Prescrições Rápidas"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
 
-            <TextView
+        <!-- Barra de Busca -->
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Buscar tópico ou medicamento..."
+            android:iconifiedByDefault="false"
+            android:background="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Botão para mostrar/esconder formulário -->
+        <Button
+            android:id="@+id/btnToggleForm"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="+ Adicionar Nova Prescrição"
+            android:textColor="@color/primaryColor"
+            android:backgroundTint="@android:color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!-- Formulário colapsável -->
+    <ScrollView
+        android:id="@+id/scrollViewForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:maxHeight="300dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adicionar Nova Prescrição"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryColor"
-                android:gravity="center"
-                android:layout_marginBottom="12dp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <!-- Campo 1: Doença/Tópico -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.MaterialComponents.Caption">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDoenca"
+                <!-- Campo 1: Doença/Tópico -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Doença/Tópico"
-                    android:inputType="textCapSentences" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="8dp"
+                    app:hintEnabled="true">
 
-            <!-- Campo 2: Medicamento -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:hintEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDoenca"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Doença/Tópico"
+                        android:inputType="textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMedicamento"
+                <!-- Campo 2: Medicamento -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicamento"
-                    android:inputType="textCapSentences" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="8dp"
+                    app:hintEnabled="true">
 
-            <!-- Campo 3: Dose -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:hintEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMedicamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Medicamento"
+                        android:inputType="textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDose"
+                <!-- Campo 3: Dose -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Dose"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="8dp"
+                    app:hintEnabled="true">
 
-            <!-- Campo 4: Posologia/Intervalo -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:hintEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Dose"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPosologia"
+                <!-- Campo 4: Posologia/Intervalo -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Posologia/Intervalo"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="8dp"
+                    app:hintEnabled="true">
 
-            <!-- Campo 5: Via -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:hintEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPosologia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Posologia/Intervalo"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etVia"
+                <!-- Campo 5: Via -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Via de administração"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="8dp"
+                    app:hintEnabled="true">
 
-            <!-- Campo 6: Observações -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:hintEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etVia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Via de administração"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etObservacoes"
+                <!-- Campo 6: Observações -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Observações (Tempo, diluição, etc...)"
-                    android:inputType="textMultiLine"
-                    android:maxLines="3" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="16dp"
+                    app:hintEnabled="true">
 
-            <!-- Botão Adicionar -->
-            <Button
-                android:id="@+id/btnAdicionar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Adicionar Prescrição"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@color/primaryColor"
-                android:layout_marginTop="8dp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etObservacoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Observações (Tempo, diluição, etc...)"
+                        android:inputType="textMultiLine"
+                        android:maxLines="3" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <!-- Botões -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAdicionar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="Adicionar"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primaryColor" />
+
+                    <Button
+                        android:id="@+id/btnCancelar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Cancelar"
+                        android:textColor="@color/primaryColor"
+                        android:backgroundTint="@android:color/transparent"
+                        style="?attr/borderlessButtonStyle" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </ScrollView>
 
     <!-- Divider -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/textSecondary"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginHorizontal="16dp" />
 
-    <!-- Lista de Prescrições -->
+    <!-- Título da Lista -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -171,13 +209,17 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/primaryColor"
-        android:layout_marginBottom="8dp" />
+        android:layout_margin="16dp" />
 
+    <!-- RecyclerView com scroll independente -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPrescricoes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
         android:scrollbars="vertical" />
 
 </LinearLayout>

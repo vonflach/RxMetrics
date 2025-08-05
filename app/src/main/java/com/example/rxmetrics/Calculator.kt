@@ -31,5 +31,6 @@ enum class CalculatorType {
     FLUIDO_INTRA_OP,
     FENA,
     DEFICIT_K,
-    CORRECAO_NA
+    CORRECAO_NA,
+    PRESCRICOES_RAPIDAS
 }

@@ -174,7 +174,10 @@ class MainActivity : AppCompatActivity() {
                 CalculatorType.DEFICIT_K),
             Calculator(14, "Correção de Sódio para Hiper e Hiponatremia",
                 "Calcule a taxa de infusão para a correção do sódio sérico",
-                CalculatorType.CORRECAO_NA)
+                CalculatorType.CORRECAO_NA),
+            Calculator(15, "Prescrições Rápidas",
+                "Gerencie suas prescrições médicas favoritas e busque rapidamente",
+                CalculatorType.PRESCRICOES_RAPIDAS)
         )
 
         calculatorsList.addAll(data)
@@ -241,6 +244,7 @@ class MainActivity : AppCompatActivity() {
             CalculatorType.WELLS_TEP -> WellsTepActivity::class.java
             CalculatorType.DEFICIT_K -> DeficitKActivity::class.java
             CalculatorType.CORRECAO_NA -> CorreçãoNaActivity::class.java
+            CalculatorType.PRESCRICOES_RAPIDAS -> PrescricoesActivity::class.java
             else -> null
         }
 
